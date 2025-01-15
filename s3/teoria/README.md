@@ -31,7 +31,7 @@
     - [5.9. Amazon S3 Analytics](#59-amazon-s3-analytics)
     - [5.10. Event Notification](#510-notificação-de-eventos)
     - [5.11. S3 Byte-Range Fetches](#511-s3-byte-range-fetches)
-    - [5.12. S3 Object Lambda](#512-s3-object-lambda) <<< to do
+    - [5.12. S3 Object Lambda](#512-s3-object-lambda)
 - [6. Modelo de consistência de dados](#6-modelo-de-consistência-de-dados)
 
 ---
@@ -135,9 +135,13 @@ Se o tamanho de um objeto for menor que 128 KB, ele não será monitorado nem qu
 
 
 **Comparação das classes de armazenamento**:
+
 ![](../imagens/s3-storage-class.png)
 
+---
+
 **Movimentações possíveis entre classes de armazenamento**:
+
 ![](../imagens/s3-storage-class-moving.png)
 
 [![Refs3](https://img.shields.io/badge/Referencia-storage_class-0A66C2?style=for-the-badge&logo=&logoColor=white)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html)
@@ -763,6 +767,7 @@ O report é atualizado diariamente e leva de 24 a 48h para começar a ver a anal
 Geralmente, o S3 entrega eventos em alguns segundos, mas pode levar até alguns minutos.
 
 **Ferramentas que consomem os eventos do S3**:
+
 ![](../imagens/s3-event.png)
 
 * Para SNS: configurar a SNS Resource Policy para que os eventos do S3 disparem tópicos do SNS;
@@ -844,11 +849,22 @@ Paraleliza GETs ao requisitar um range específico de bytes do objeto. Dá uma b
 
 ### 5.12. S3 Object Lambda
 
+Utiliza uma função lambda para mudar/alterar um objeto antes de ser entregue a uma aplicação.
+
+É preciso criar um `S3 Access Point` e um `S3 Object Lambda Access Point` para fazer uso.
+
+![](../imagens/s3-object-lambda.png)
+
+É utilizado para:
+
+* Mascarar informações de identificação pessoal para analytics ou ambientes não produtivos;
+* Converter formatos de dados, como de XML para JSON.
+
 ---
 
 ## 6. Modelo de consistência de Dados
 
-O S3 oferece uma forte consistÊncia de leitura após gravação para solicitações de PUT e DELETE de objetos no bucket em todas as regiões da AWS. Isso se aplica as gravações em novos objetos, solicitações de PUT que sobrescrevem objetos existentes e solicitações de DELETE.
+O S3 oferece uma forte consistência de leitura após gravação para solicitações de PUT e DELETE de objetos no bucket em todas as regiões da AWS. Isso se aplica as gravações em novos objetos, solicitações de PUT que sobrescrevem objetos existentes e solicitações de DELETE.
 
 As atualizações em um único key são atômicas. Por exemplo, se você executar um PUT em um objcet-key e um GET no mesmo object-key simultaneamente, você obterá os dados antigos ou novos, mas nunca dados parciais ou corrompidos.
 
@@ -858,7 +874,7 @@ O Amazon S3 atinge alta disponibilidade replicando dados entre vários servidore
 >
 > - O Amazon S3 não oferece suporte ao bloqueio de objetos para escrita simultânea. Se duas solicitações PUT forem realizadas simultaneamenta na mesma chave, a solicitação com timestamp mais recente será a escolhida. Se isso for um problema, você precisará criar um mecanismo de bloqueio de objetos em sua aplicação.
 >
-> - As atualizações são baseadas em chave, não é possível realizar atualizações atômicas entre chaves. Por exemplo, você não pode tornar a atualização de uma chave dependente da atualização de outra chave, a menos que vocÊ desenvolva essa funcionalidade na aplicação.
+> - As atualizações são baseadas em chave, não é possível realizar atualizações atômicas entre chaves. Por exemplo, você não pode tornar a atualização de uma chave dependente da atualização de outra chave, a menos que você desenvolva essa funcionalidade na aplicação.
 
 As configurações de bucket têm um modelo de consistência eventual, dessa forma:
 
