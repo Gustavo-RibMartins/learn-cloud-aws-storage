@@ -1,4 +1,4 @@
-# Elastic File Systema (EFS)
+# ![EFS](imagens/efs.jpg "Ícone do AWS EFS") Estudos de AWS EFS
 
 Oferece um sistema de arquivos elástico simples e sem servidor. Escala sob demanda até petabytes sem interromper os aplicativos, aumentando e diminuindo automaticamente à medida que você adiciona e remove arquivos.
 
