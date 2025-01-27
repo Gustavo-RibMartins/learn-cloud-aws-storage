@@ -1,4 +1,4 @@
-# Storage Gateway
+# ![Storage Gateway](imagens/storage-gateway.jpg "Ícone do AWS Storage Gateway") Estudos de AWS Storage Gateway
 
 Conecta um dispositivo de software local (tipo uma VM) a um armazenamento em nuvem para oferecer integração entre um ambiente de TI local e infraestrutura AWS (serviço de cloud híbrida).
 
@@ -12,11 +12,11 @@ Depois que o S3 File Gateway for ativado, crie e configure o compartilhamento de
 
 A atualização é feita de forma assíncrona no bucket à medida que os arquivos são alterados. A transferência é otimizada entre o gateway e a aws porque o serviço usa multipart upload.
 
-![](../Imagens/storage-gateway-file.png)
+![](./imagens/storage-gateway-file.png)
 
 Como os arquivos são convertidos em objetos no S3, é preciso tomar extremo cuidado com algumas operações nos arquivos no gateway:
 
-![](../Imagens/storage-gateway-file-2.png)
+![](./imagens/storage-gateway-file-2.png)
 
 ---
 

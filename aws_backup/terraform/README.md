@@ -2,4 +2,4 @@
 
 Infraestrutura criada pelo Terraform:
 
-![](../../Imagens/awsBackup-terraform.png)
+![](../imagens/awsBackup-terraform.png)
