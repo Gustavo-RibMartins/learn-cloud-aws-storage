@@ -447,6 +447,7 @@ O VPC Endpoint Policy precisa habilitar acesso ao Bucket Target e ao Access Poin
 
 ### 4.7. IAM Access Analyzer para S3
 
+
 ### 4.8. Criptografia
 
 É possível criptografar os objetos no S3 usando 4 métodos:
@@ -520,6 +521,49 @@ Também é possível configurar Bucket Policy para permitir `PUT` apenas de obje
 
 ---
 
+### 4.9. Pre-Signed URLs
+
+Geração de URLs pré-assinadas usando S3 Console, AWS CLI ou SDK.
+
+**URL Expiration**
+
+* S3 Console: 1 min a 720 min (12h);
+* AWS CLI: habilita configuração do parâmetro de expiração em segundos (default=3600s, max=604.800s ~ 168h).
+
+Usuários que recebem uma URL pré-assinada herdam as permissões do usuário que gerou a URL para GET/PUT.
+
+**Exemplos:**
+
+* Habilita apenas usuários logados para fazerem download de seu bucket S3;
+* Habilita usuários temporariamente para carregar arquivos em um local preciso do seu bucket S3.
+
+---
+
+### 4.10. Glacier Vault Lock
+
+Adota o WORM model (Write Once Read Many). Cria um Vault Lock Policy e faz com que os objetos não possam ser editados (alterados ou deletados) por um período específico de tempo.
+
+> **Note:**
+>
+> O versionamento precisa estar habilitado.
+
+**Retention Mode - Compliance:**
+
+* Object versions não podem ser sobrescritos ou deletados por nenhum usuário, nem o root user;
+* Objects retention modes não podem mudar, e o período de retenção não pode ser encurtado.
+
+**Retention Mode - Governance:**
+
+* A maioria dos usuários não pode sobrescrever ou deletar um object version ou alterar suas configurações de bloqueio;
+* Alguns usuários têm permissões especiais para mudar a retenção ou deletar o objeto.
+
+**Legal Hold:**
+
+* Protege o objeto indefinidamente, independente do período de retenção;
+* Pode ser colocado e removido livremente usando a permissão IAM `s3:PutObjectLegalHold`.
+
+---
+
 ## 5. Outros recursos
 
 ### 5.1. S3 Storage Lens
@@ -590,7 +634,7 @@ Para acessar o bucket que está habilitado para o Transfer Acceleration, você d
 
 Fornece detalhes sobre as solicitações que são feitas a um bucket. Você pode usar logs de acesso ao servidor para muitos casos de uso, como conduzir auditorias de segurança e acesso, saber mais sobre sua base de clientes e entender sua fatura do Amazon S3.
 
-Você habilita os logs de acesso no menu de `Propriedades` do bucket. É preciso informar um bucket de destino para armazenar os logs e é recomendado que você **não use o mesmo bucket que monitorará os acessos como bucket de destino dos logs**.
+Você habilita os logs de acesso no menu de `Propriedades` do bucket. É preciso informar um bucket de destino para armazenar os logs e é recomendado que você **não use o mesmo bucket que monitorará os acessos como bucket de destino dos logs (logging loop)**.
 
 ![](../imagens/s3-logs.png)
 
