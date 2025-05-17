@@ -9,3 +9,4 @@ Repositório para estudo de serviços de Storage da AWS no contexto de Cloud Com
 * [AWS Backup](./aws_backup/)
 * [Storage Gateway](./storage_gateway/)
 * [AWS Snowball](./snowball/)
+* [AWS Transfer Family](./transfer/)
