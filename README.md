@@ -5,6 +5,7 @@ Repositório para estudo de serviços de Storage da AWS no contexto de Cloud Com
 * [S3 - Simple Storage Service](./s3/)
 * [EBS - Elastic Block Storage](./ebs/)
 * [EFS - Elastic File System](./efs/)
+* [Amazon FSx](./fsx/)
 * [AWS Backup](./aws_backup/)
 * [Storage Gateway](./storage_gateway/)
 * [AWS Snowball](./snowball/)
