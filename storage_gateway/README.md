@@ -2,6 +2,8 @@
 
 Conecta um dispositivo de software local (tipo uma VM) a um armazenamento em nuvem para oferecer integração entre um ambiente de TI local e infraestrutura AWS (serviço de cloud híbrida).
 
+![](./imagens/storage-gateway-1.png)
+
 ---
 
 ### S3 File Gateway
@@ -18,6 +20,20 @@ Como os arquivos são convertidos em objetos no S3, é preciso tomar extremo cui
 
 ![](./imagens/storage-gateway-file-2.png)
 
+Os arquivos recentes utilizados ficam no cache no file gateway.
+
+Para enviar ao Glacier, é preciso usar `bucket lifecycle policy`.
+
+---
+
+## FSx File Gateway
+
+* Acesso nativo ao Amazon FSx for Windows File Server;
+* Cache local para data acessados frequentemente;
+* Compatibilidade nativa com Windows (SMB, NTFS, Active Directory...).
+
+![](./imagens/fsx.png)
+
 ---
 
 ### Tape Gateway
@@ -26,11 +42,15 @@ Um Gateway de fita que fornece armazenamento em fita virtual. É implantado da m
 
 Com Tape Gateway você pode arquivar de forma econômica e permanente os dados de backups no S3 Glacier Flexible Retrival ou no S3 Glacier Deep Archive.
 
+![](./imagens/tape.png)
+
 ---
 
 ### Volume Gateway
 
 Fornece volumes de armazenamento de backup em nuvem que podem ser montados como dispositivos **Internet Small Computer System Interface (iSCSI)** em seus servidores de aplicativos locais.
+
+![](./imagens/volume.png)
 
 ---
 
