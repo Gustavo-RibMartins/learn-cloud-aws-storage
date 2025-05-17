@@ -53,6 +53,7 @@ Com EFS é possível configurar lifecycle management (lifecycle policy), para mo
 ### 3. Exemplos
 
 **Exemplo de configuração Standart:**
+
 ![](./imagens/efs-ex1.png)
 
 Para acessar seu NFS do EFS em uma VPC, é preciso criar um ou mais destinos de montagem na VPC.
@@ -63,11 +64,13 @@ Para acessar seu NFS do EFS em uma VPC, é preciso criar um ou mais destinos de 
 > Um **destino de montagem (mount target)** oferece um endereço IP para um endpoint do NFSv4 no qual é possível montar um sistema de arquivos.
 
 **Exemplo de configuração One Zone:**
+
 ![](./imagens/efs-ex2.png)
 
 Nesse caso, além da menor disponibilidade do EFS, há custos adicionais envolvidos na trasnferência de dados que saem/ entram na instância da zona 2c. Dados transferidos entre instâncias na mesma AZ não são cobrados.
 
 **Exemplo de acesso local do EFS usando Direct Connect**
+
 ![](./imagens/efs-ex3.png)
 
 Dessa forma, é possível acessar o sistema de arquivos a partir da sua empresa, via Direct Connect.
